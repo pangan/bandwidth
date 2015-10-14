@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>{{title}}</title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<h1>Var 1 = {{param.var1}}</h1>
+		<img src="/static/icon.jpg">
+		<img src="{{url_for('static',filename='icon.png')}}">
+		<table border=1>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<button>Forward</button>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button>Left</button>
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					<button>Right</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<button>Backward</button>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=3>
+					<button>Start/Stop</button>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+	</body>
+</html>

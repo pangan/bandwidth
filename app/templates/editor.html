@@ -1,0 +1,47 @@
+<!doctype html>
+{% include 'header.html'%}
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+		function toggleStatus(div_id, rev_select) {
+			if (rev_select){
+				if (!($('#'+div_id).is(':checked'))) {
+			        $('#'+div_id+'_div :input').removeAttr('disabled');
+			        $('#'+div_id+'_div').attr('class', 'div_en');
+				} else {
+					$('#'+div_id+'_div :input').attr('disabled', true);
+					$('#'+div_id+'_div').attr('class', 'div_dis');
+				}
+			}
+			else{
+				if ($('#'+div_id).is(':checked')) {
+			        $('#'+div_id+'_div :input').removeAttr('disabled');
+			        $('#'+div_id+'_div').attr('class', 'div_en');
+				} else {
+					$('#'+div_id+'_div :input').attr('disabled', true);
+					$('#'+div_id+'_div').attr('class', 'div_dis');
+				}
+			}
+
+
+		}
+	</script>
+</head>
+<form method=POST action="savefile">
+	<b>Config File Version </b> : {{conf_tab[0]}} </br>
+	<dl>
+	{%- for tabs in conf_tab[1] %}
+		{% for tab_title in tabs -%}
+			<dt class="tab_title">{{tab_title}}</dt>
+			
+			{{ find_sub_options(tabs[tab_title]) }}
+				
+			
+		{%endfor%}
+		<dt><b>	{{tab}}</b>
+	{% endfor %}
+	</dl>
+	<input type=hidden name="new_version" value="{{new_version}}">
+	<input type=submit value="Save As ...">
+	<input type=text value='config_{{new_version}}.xml' name='file_name'>
+</form>

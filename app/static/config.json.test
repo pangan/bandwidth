@@ -1,0 +1,48 @@
+{
+
+  "2. Wi-Fi Triggers":{
+   
+   "es_disabled":{
+   
+      "caption":"Triggers",
+      "type":"bool",
+      "size":0,
+      "reverce_select":true,
+      "sub_options":{
+           "TIME_BASED_SCAN_TITLE":{
+          "caption":"Time based Wi-Fi on/off, scan and connect",
+          "type":"title",
+          "size":0,
+          "sub_options":{
+            "interval_scan_times": {
+              "caption": "Interval Scan Times",
+              "type": "text",
+              "size": 300
+            },
+            "screen_on_wifi":{
+              "caption":"Screen Wifi",
+              "type":"bool",
+              "size":0,
+              "sub_options": {
+                "wifi_min_battery":{
+                  "caption":"wifi min battery",
+                  "type":"number",
+                  "size":50
+                }
+              }
+
+            }
+          }
+        }
+      }
+    },
+    "test":{
+      "caption":"test",
+      "type":"text",
+      "size":50
+    }
+
+  },
+  "amir":{}
+
+}

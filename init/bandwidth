@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Source function library.
+. /etc/init.d/functions
+
+#exec="/opt/bandwidth/run.sh"
+exec="gunicorn -c /opt/bandwidth/gunicorn.ini bandwidth:app --chdir /opt/bandwidth"
+prog="bandwidth"
+
+lockfile=/var/lock/subsys/$prog.pid
+
+do_start() {
+    echo -n $"Starting $prog ... "
+    action `$exec`
+    
+}
+
+do_stop() {
+    echo "stopping $prog ... `killproc -p $lockfile`"
+}
+
+get_status() {
+    echo "$prog `status -p $lockfile`"
+}
+
+case "$1" in
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    status)
+        get_status
+        
+        ;;
+    restart)
+        do_stop
+        do_start
+        ;;
+        
+    *)
+        echo "Usage: <servicename> {start|stop|status|restart"
+        exit 1
+        ;;
+esac
+exit $?

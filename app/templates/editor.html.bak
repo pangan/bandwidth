@@ -1,0 +1,68 @@
+<!doctype html>
+{% include 'header.html'%}
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+		function toggleStatus(div_id) {
+			if ($('#'+div_id).is(':checked')) {
+		        $('#'+div_id+'_div :input').removeAttr('disabled');
+		        $('#'+div_id+'_div').attr('class', 'div_en');
+			} else {
+				$('#'+div_id+'_div :input').attr('disabled', true);
+				$('#'+div_id+'_div').attr('class', 'div_dis');
+			}
+
+
+		}
+	</script>
+</head>
+<form method=POST action="savefile">
+	<b>Config File Version </b> : {{conf_tab[0]}} </br>
+	<dl>
+	{%- for tabs in conf_tab[1] %}
+		{% for tab_title in tabs -%}
+			<dt class="tab_title">{{tab_title}}
+			{% for items in tabs[tab_title] -%}
+				<dd class="tab_item"> {{items['title']}}: 
+				{%- if items['type'] == "bool"%}
+					{% set check_str=""%}
+					{%if items['value'] == '1'%}
+						{%set check_str="checked"%}
+					{%endif-%}
+					<input type="hidden" name="{{items['name']}}" value="{{items['value']}}"><input type="checkbox" {{check_str}} id="{{items['name']}}" onchange="this.previousSibling.value=1-this.previousSibling.value;toggleStatus(id)">
+				{%elif items['type'] in ["text","number"] %}
+					<input type="{{items['type']}}" value="{{items['value']}}" style="width:{{items['size']}}px" name="{{items['name']}}">
+				{%endif%}
+										
+				{% if items['sub_item']%}
+					<div style="padding-left: 50px;" id="{{items['name']}}_div">
+					{%-for sub_items in items['sub_item']%}
+						{{sub_items['title']}}:
+						{%if sub_items['type'] == "bool"%}
+							{%set check_str=""%}
+							{%if sub_items['value'] == '1'%}
+								{%set check_str="checked"%}
+							{%endif-%}
+							<input type="hidden" name="{{sub_items['name']}}" value="{{sub_items['value']}}"><input type="checkbox" {{check_str}} id="{{sub_items['name']}}" onchange="this.previousSibling.value=1-this.previousSibling.value;toggleStatus(id)">
+						{%elif sub_items['type'] in ["text", "number"]%}
+							<input type="{{sub_items['type']}}" value="{{sub_items['value']}}" style="width:{{sub_items['size']}}px" name="{{sub_items['name']}}">
+						{%endif%}
+						<br>
+					{%endfor%}
+					</div>
+					{%if items['type'] != "title"%}
+					<script type="text/javascript">
+						toggleStatus('{{items['name']}}');
+					</script>
+					{%endif%}
+
+				{%endif%}
+			{%endfor%}
+		{%endfor%}
+		<dt><b>	{{tab}}</b>
+	{% endfor %}
+	</dl>
+	<input type=hidden name="new_version" value="{{new_version}}">
+	<input type=submit value="Save As ...">
+	<input type=text value='config_{{new_version}}.xml' name='file_name'>
+</form>

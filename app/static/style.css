@@ -1,0 +1,52 @@
+body {
+    background-color: lightblue;
+    font-family : Arial;
+    
+}
+
+.app_title {
+	font-size: 24px;
+}
+
+.app_description {
+	font-size: 14px;
+	color: gray;
+}
+
+.tab_title {
+	color:red;
+	font-weight: bold;
+}
+
+.tab_item {
+	font-style:italic;
+	padding-left: 50px;
+	font-weight: normal;
+}
+
+.menuitem {
+	color:blue;
+	font-weight: bold;
+}
+
+.div_dis{
+	color:gray;
+	opacity:0.6;
+	
+}
+
+.div_en{
+	
+}
+
+.empty_tags{
+	color:red;
+	padding-left: 50px;
+}
+
+.logout{
+	color:red;
+	font-size: 20px;
+	font-weight: bold;
+
+}

@@ -1,0 +1,22 @@
+<html>
+				<head>
+					
+				</head>
+				<body>
+					{% include 'header.html'%}
+					
+					New File Version : {{new_version}} <br>
+					File is saved as : {{file_name}}<br>
+					<br>
+					{% if empty_tags%}
+					Empty settings :<br>
+						<div class="empty_tags" >
+						{% for tag in empty_tags%}
+							{{tag}}<br>
+						{% endfor%}
+						</div>
+					<hr>
+					{%endif%}
+
+				</body>
+<html>
