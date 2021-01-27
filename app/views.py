@@ -56,8 +56,7 @@ def download():
 			Syntax : %sbandwidth?size=<file size in>&unit=[b:byte, k:kilibyte, m:megabyte, g: gigabyte] <br>
 			<br>
 			Example : <a href='%sbandwidth?size=100&unit=k'>%sbandwidth?size=100&unit=k</a>
-			<hr>
-			All rights reserved by Birdstep Technology AB.
+			
 			""" %(APP_VER, request.base_url, request.base_url , request.base_url)
 			return ret
 	
